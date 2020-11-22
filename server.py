@@ -63,7 +63,7 @@ async def CheckIn(request):
                 print(">\033[1;33mlistdir\033[0m: list files and directories. \033[36mMethod: Python glob library and os.listdir method\033[0m")
                 print(">\033[1;33mdownload [filename]\033[0m: after you cd to directory of interest, download files of interest (one at a time). \033[36mMethod: Python read file libraries\033[0m")
                 print(">\033[1;33mlistusers\033[0m: List local users. \033[36mMethod: Python pwd library\033[0m")
-                print(">\033[1;33maddresses\033[0m: List internal address(es) for this host. \033[36mMethod: NSAppleScript API calls via Objective C\033[0m")
+                print(">\033[1;33maddresses\033[0m: List internal address(es) for this host. \033[36mMethod: NSHost API call via Objective C\033[0m")
                 print(">\033[1;33mlcwd\033[0m: Show current server working directory")
                 print(">\033[1;33mwhoami\033[0m: Show current user context")
                 print(">\033[1;33mcat [filename]\033[0m: Attempt to get contents of specified file")
