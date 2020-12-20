@@ -29,6 +29,7 @@ You can set up the server locally or you can use the docker setup I have include
 
 > docker rm macc2-container
 
+**When running from Docker, in order to access the client files from the container you would need to add the mount option to the run command to mount the container directory to your host. Alternatively, you could just download MacC2 outside of the container, and run the macro_generator script to get a client for the containerized server**
 You can then either copy the MacC2_client.py file over to the client and execute for a callback or you can import the macro.txt macro into an Office document and "Enable Macros" when opening for a callback on the client. 
 
 ------
