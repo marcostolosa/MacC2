@@ -1,6 +1,6 @@
 #!/bin/bash
 
-openssl req -new -newkey rsa:2048 -nodes -out ca.csr -keyout ca.key && openssl x509 -trustout -signkey ca.key -days 365 -req -in ca.csr -out ca.pem
+openssl req -new -newkey rsa:2048 -nodes -out ca.csr -keyout ca.key -subj "/C=US/ST=CA/L=Redwood City/O=Mac Experts LLC" && openssl x509 -trustout -signkey ca.key -days 365 -req -in ca.csr -out ca.pem
 
 echo Enter IP/hostname of your MacC2 server:
 
