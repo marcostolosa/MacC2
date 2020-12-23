@@ -14,4 +14,6 @@ python3 macro_generator.py -s $server -p $port
 
 docker build -t macc2-docker .
 
-sudo docker run --name=macc2-container -p 443:443 -ti macc2-docker
+docker volume create macc2
+
+sudo docker run --rm -p 443:443 -v macc2:/macc2:ro -ti macc2-docker
