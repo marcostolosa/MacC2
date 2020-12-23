@@ -21,15 +21,12 @@ You can set up the server locally or you can use the docker setup I have include
 ![Image](pic31.png)
 5. A hex encoded macro payload will be dropped locally in a file named macro.txt that is configured to connect to your MacC2 server on the hostname/IP and port you specified.
 ![Image](pic32.png)
-6. Docker will install the aiohttp python3 dependency, build macc2-docker, and will run the MacC2 Server in a container named macc2-container. Once finished the MacC2 server will listen on the specified port:
+6. Docker will install the aiohttp python3 dependency, build macc2-docker, and will run the MacC2 Server in a container. Once finished the MacC2 server will listen on the specified port:
 ![Image](pic33.png)
-7. You can run *docker ps* and validate that the MacC2 server is running (you will see a container named macc2-container listed there)
+7. You can run *docker ps* and validate that the MacC2 server is running
+8. The setup script also sets up a shared mount between the container and the host. On the host, you can browse to /var/lib/docker/volumes/macc2/_data in order to access MacC2_client.py as well as macro.txt which you will need to port over to the target host.
 
-**Note: Since I am using a static container name (macc2-container), if you run this setup more than once on the same server, you will need to delete the macc2-container name after each use or else you will get an error "The container name "/macc2-container" is already in use by container". You can run the command below to delete the macc2-container after each run:**
 
-> docker rm macc2-container
-
-**When running from Docker, in order to access the client files from the container you would need to add the mount option to the run command to mount the container directory to your host. Alternatively, you could just download MacC2 outside of the container, and run the macro_generator script to get a client for the containerized server**
 You can then either copy the MacC2_client.py file over to the client and execute for a callback or you can import the macro.txt macro into an Office document and "Enable Macros" when opening for a callback on the client. 
 
 ------
