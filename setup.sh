@@ -6,11 +6,7 @@ echo Enter IP/hostname of your MacC2 server:
 
 read server
 
-echo Enter listening port for your MacC2 server:
-
-read port
-
-python3 macro_generator.py -s $server -p $port
+python3 macro_generator.py -s $server -p 443
 
 docker build -t macc2-docker .
 
