@@ -16,4 +16,4 @@ docker build -t macc2-docker .
 
 docker volume create macc2
 
-sudo docker run --rm -p 443:443 -v macc2:/macc2 -ti macc2-docker
+sudo docker run --rm -v macc2:/macc2 -ti macc2-docker
