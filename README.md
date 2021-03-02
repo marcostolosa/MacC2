@@ -15,14 +15,14 @@ You can set up the server locally or you can use the docker setup I have include
 ***Next:***
 1. `chmod +x setup.sh`
 2. `sudo ./setup.sh` **(this will create an untrusted ssl cert and key, generate a macro file for the server and port you specify (will drop the macro in macro.txt locally), build macc2-docker, and run the MacC2 server inside of macc2-container in interactive mode)**
-3. when prompted, enter the IP/hostname of the MacC2 server
-![Image](pic30.png)
-4. when prompted, enter the port that the MacC2 server will listen on
-![Image](pic31.png)
-5. A hex encoded macro payload will be dropped locally in a file named macro.txt that is configured to connect to your MacC2 server on the hostname/IP and port you specified.
-![Image](pic32.png)
-6. Docker will install the aiohttp python3 dependency, build macc2-docker, and will run the MacC2 Server in a container. Once finished the MacC2 server will listen on the specified port:
-![Image](pic33.png)
+3. when prompted, enter the IP/hostname of the MacC2 server\
+![Image](img/pic30.png)
+4. when prompted, enter the port that the MacC2 server will listen on\
+![Image](img/pic31.png)
+5. A hex encoded macro payload will be dropped locally in a file named macro.txt that is configured to connect to your MacC2 server on the hostname/IP and port you specified.\
+![Image](img/pic32.png)
+6. Docker will install the aiohttp python3 dependency, build macc2-docker, and will run the MacC2 Server in a container. Once finished the MacC2 server will listen on the specified port:\
+![Image](img/pic33.png)
 7. You can run *docker ps* and validate that the MacC2 server is running
 8. The setup script also sets up a shared mount between the container and the host. On the host, you can browse to /var/lib/docker/volumes/macc2/_data in order to access MacC2_client.py as well as macro.txt which you will need to port over to the target host.
 
@@ -58,11 +58,11 @@ Usage:
 
 -Example:
 
-![Image](pic3.png)
+![Image](img/pic3.png)
 
 3. Start the generated MacC2_server.py script to listen for a connection:
 
-![Image](pic4.png)
+![Image](img/pic4.png)
 
 
 **_On Client Side (the target mac host):_**
@@ -71,11 +71,11 @@ Usage:
 2. On the client, run the MacC2_client.py script: 
 `python MacC2_client.py`
 
-![Image](pic5.png)
+![Image](img/pic5.png)
 
 3. On the server, you will see an inbound connection. Example below:
 
-![Image](pic6.png)
+![Image](img/pic6.png)
 
 ----------
 
@@ -83,7 +83,7 @@ Usage:
 
 After you receive a connection, you can use the "help" command on the server to get a list of built-in commands available. You can enter one of these commands. After entering a command and pressing Enter, the command is queued up (allows you to enter multiple commands to be executed by the client). Once you type "done" and hit Enter, all of the queued commands will be sent to the client for execution.
 
-![Image](pic7.png)
+![Image](img/pic7.png)
 
 Each command is pretty straightforward. The command options that are not OPSEC safe (i.e., command line executions or cause pop ups) are also flagged in red from the help menu.
 
