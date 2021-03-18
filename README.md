@@ -1,8 +1,6 @@
 # MacC2
 MacC2 is a macOS post exploitation tool written in python that uses Objective C calls or python libraries as opposed to command line executions. The client is written in python2, which though deprecated is still being shipped with base Big Sur installs. It is possible down the road that Apple will remove python2 (or python altogether) from base macOS installs but as of Nov 2020 this is not the case. Apple plans to eventually remove scripting runtimes from base macOS installs, but it is unknown when that will happen since Big Sur includes python. 
 
-**This tool has been tested on Catalina and Big Sur. The only function that did not work as expected on Big Sur was the *systeminfo* command**
-
 You can set up the server locally or you can use the docker setup I have included in this repo. Instructions below:
 
 -----
