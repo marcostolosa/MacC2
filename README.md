@@ -1,6 +1,14 @@
 # MacC2
 MacC2 is a macOS post exploitation tool written in python that uses Objective C calls or python libraries as opposed to command line executions. The client is written in python2, which though deprecated is still being shipped with base Big Sur installs. It is possible down the road that Apple will remove python2 (or python altogether) from base macOS installs but as of Nov 2020 this is not the case. Apple plans to eventually remove scripting runtimes from base macOS installs, but it is unknown when that will happen since Big Sur includes python. 
 
+------
+Latest Addition: May 2021
+
+- Added the MS Office Sandbox escape technique **discovered by Madhav Bhatt in his blog post at: https://desi-jarvis.medium.com/office365-macos-sandbox-escape-fcce4fa4123c**. 
+
+
+- Implementation in MacC2: MacC2 will drop two files to disk: **$HOME/\~$IT-Provision.zip** and **$HOME/Library/WebKit/\~$IT-Provision.py**. The .zip contains a .zshenv file, which runs the python payload at ~/Library/WebKit/~$IT-Provision.py. Once the system is rebooted, the .zip login item will automatically be extracted and drop the .zshenv file to the user's home directory, which will execute when a new terminal window is opened. 
+
 You can set up the server locally or you can use the docker setup I have included in this repo. Instructions below:
 
 -----
