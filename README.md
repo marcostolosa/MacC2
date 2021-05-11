@@ -118,15 +118,15 @@ The operator flow after setting everything up and getting a callback is:
 
 ----------
 
-## Macro Limitations ##
+## Macro Info ##
 
-MacC2 does NOT include any sandbox escapes and therefore all functions do not work when access is gained via the Office macro. Functions that DO work from the sandbox include:
+**MacC2 includes the MS Office sandbox escape technique identified by Madhav Bhatt in his blog post at: https://desi-jarvis.medium.com/office365-macos-sandbox-escape-fcce4fa4123c**. However, if using the MS Office macro payload, the system must reboot in order for the escape to take effect. Functions that DO work from the sandbox include:
 
 - runjxa 
 
 - systeminfo
 
-- persist: MacC2 can drop files to disk from a sandboxed macro payload. However, upon reboot the persistence will not execute due to the quarantine attribue on the dropped files.
+- persist: MacC2 will drop two files to disk: ~/~$IT-Provision.zip and ~/Library/WebKit/~$IT-Provision.py. The .zip contains a .zshenv file, which runs the python payload at ~/Library/WebKit/~$IT-Provision.py. Once the system is rebooted, the .zip login item will automatically be extracted and drop the .zshenv file to the user's home directory, which will execute when a new terminal window is opened. 
 
 - addresses
 
