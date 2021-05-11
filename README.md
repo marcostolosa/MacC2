@@ -7,7 +7,7 @@ Latest Addition: May 2021
 - Added the MS Office Sandbox escape technique **discovered by Madhav Bhatt in his blog post at: https://desi-jarvis.medium.com/office365-macos-sandbox-escape-fcce4fa4123c**. 
 
 
-- Implementation in MacC2: When you run the ***persist*** command, MacC2 will drop two files to disk: **$HOME/\~$IT-Provision.zip** and **$HOME/Library/WebKit/\~$IT-Provision.py**. The .zip contains a .zshenv file, which runs the python payload at ~/Library/WebKit/~$IT-Provision.py. Once the system is rebooted, the .zip login item will automatically be extracted and drop the .zshenv file to the user's home directory, which will execute when a new terminal window is opened. 
+- Implementation in MacC2: When you get a callback from the MS Office macro payload (which will be sandboxed) and you run the ***persist*** command, MacC2 will drop two files to disk: **$HOME/\~$IT-Provision.zip** and **$HOME/Library/WebKit/\~$IT-Provision.py**. The .zip contains a .zshenv file, which runs the python payload at ~/Library/WebKit/~$IT-Provision.py. Once the system is rebooted, the .zip login item will automatically be extracted and drop the .zshenv file to the user's home directory, which will execute when a new terminal window is opened. 
 
 You can set up the server locally or you can use the docker setup I have included in this repo. Instructions below:
 
